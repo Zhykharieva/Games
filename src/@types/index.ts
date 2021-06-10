@@ -7,6 +7,7 @@ export type CellProps = {
 
 export type FieldProps = {
     board: [][]
+    boardWidth: string
     onClick(coords: ICoords): void
 };
 

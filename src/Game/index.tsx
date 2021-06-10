@@ -1,8 +1,7 @@
 
 import React, { useState } from "react";
-import Field from '../components/TicTacToe/TicTacToeField';
 
-import ConnectFourField from '../components/FourInRow/ConnectFourBoard';
+import GameBoard from '../components/Board';
 import { GameProps, ICoords } from "../@types";
 
 
@@ -46,8 +45,8 @@ const GameView: React.FC<GameProps>  = ({game, isConnectFour, isTicTacToe}) => {
   return (
     <>
       <h1>React GAME</h1>
-      {isConnectFour&&(<ConnectFourField board={boardView} onClick={handleClick}/>)}
-      {isTicTacToe && (<Field board={boardView} onClick={handleClick} />)}
+      {isConnectFour&&(<GameBoard board={boardView} boardWidth ='430px' onClick={handleClick}/>)}
+      {isTicTacToe && (<GameBoard board={boardView} boardWidth ='190px' onClick={handleClick} />)}
       <div className="info-wrapper">
         <h3>{game.isFinished ? gameResult : nextPlayer}</h3>
       </div> 

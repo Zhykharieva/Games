@@ -12,8 +12,8 @@ body {
   font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
-  min-height: 100vh;
-  padding: 2rem;
+  margin: 20px auto;
+  
 }
 
 h1 {
@@ -22,9 +22,11 @@ h1 {
 
 
 .X {
+  font-size: 50px;
   color: red;
 }
 .O {
+  font-size: 50px;
   color: green;
 }
 .B {

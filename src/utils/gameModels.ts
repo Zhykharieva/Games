@@ -1,5 +1,5 @@
 import { Game, TicTacToe } from 'game-core';
-import FourInRow from '../components/FourInRow/Strategy';
+import FourInRow from '../ConnectFourStrategy';
 
 export const gameConnectFour = new Game({
     playersList: ['Ann', 'Vasya'],

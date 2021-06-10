@@ -1,5 +1,5 @@
 import React from "react";
-import { CellProps } from "../../../@types";
+import { CellProps } from "../../@types";
 import {Cell} from './styled'
 
 const CellButton: React.FC<CellProps>= ({ value, onClick }) => {
@@ -11,5 +11,4 @@ const CellButton: React.FC<CellProps>= ({ value, onClick }) => {
     </Cell>
   );
 };
-
 export default CellButton;
