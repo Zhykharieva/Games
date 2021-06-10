@@ -7,8 +7,8 @@ const Auth = () => {
   const [isTicTacToe, setTicTacToe] = useState(false)
   const [isFourInRow, setFourInRow] = useState(false)
   
-  const handleGameChoose = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
+  const handleGameChoose = ({target}: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = target.value;
    
     if(value === 'TicTacToeGame'){
       setTicTacToe(true);
