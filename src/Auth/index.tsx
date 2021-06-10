@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import ConnectFour from '../components/FourInRow';
-import TicTacToeGame from '../components/TicTacToeGame';
+import GameView from '../Game';
+import { gameTicTacToe, gameConnectFour } from '../utils/gameModels'
+
+
 const Auth = () => {
   const [isTicTacToe, setTicTacToe] = useState(false)
   const [isFourInRow, setFourInRow] = useState(false)
-  let isFourInRowPlayed = true; 
   
   const handleGameChoose = (e: any) => {
     const value = e.target.value;
@@ -12,10 +13,9 @@ const Auth = () => {
     if(value === 'TicTacToeGame'){
       setTicTacToe(true);
       setFourInRow(false)
-      console.log(isTicTacToe);
-      
     }
     else {
+     
       setTicTacToe(false);
      setFourInRow(true)
     }
@@ -29,8 +29,8 @@ const Auth = () => {
         <option value="FourInRow">FourInRow</option>
       </select>
      
-     { isTicTacToe && (<TicTacToeGame/>)}
-     { isFourInRow && (<ConnectFour/>)}
+     { isTicTacToe &&  (<GameView game={gameTicTacToe} isConnectFour={false} isTicTacToe={true}/>)}
+     { isFourInRow && (<GameView game={gameConnectFour} isConnectFour={true} isTicTacToe={false}/>)}
     </div>
     
   );

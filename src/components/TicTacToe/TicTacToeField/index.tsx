@@ -1,16 +1,17 @@
 
 import React from "react";
+import { FieldProps } from "../../../@types";
 import Cell from "../Cell";
-import { Board, Row} from "./styled";
+import { Board } from "./styled";
 
-const Field = ({board, onClick }) => {
+const Field: React.FC<FieldProps> = ({board, onClick }) => {
 
     
   return(
    <Board> 
     {board.map((elem, index) => 
       
-        elem.map((cell, ind) => 
+        elem.map((cell: JSX.Element, ind) => 
           { 
           return cell = <Cell key={index-ind} value={cell}  onClick={() => onClick({x: index, y: ind})}/>
           }))}

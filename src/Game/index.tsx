@@ -1,24 +1,19 @@
-import { Game } from 'game-core';
+
 import React, { useState } from "react";
+import Field from '../components/TicTacToe/TicTacToeField';
 
-import ConnectFourField from './Board';
+import ConnectFourField from '../components/FourInRow/ConnectFourBoard';
+import { GameProps, ICoords } from "../@types";
 
-import FourInRow from './Strategy';
 
-const game = new Game({
-  playersList: ['Ann', 'Vasya'],
-  strategy: new FourInRow(),
-  fieldSize: { x: 7, y: 6 },
-});
+const GameView: React.FC<GameProps>  = ({game, isConnectFour, isTicTacToe}) => {
+    const boardZero = JSON.parse(JSON.stringify(game.field.board));
 
-const boardZero = JSON.parse(JSON.stringify(game.field.board));
-
-const initialStore = {
-  board: boardZero,
-  boardView: game.field.board.map(elem => elem.map(cell => cell = null)),
-};
-
-const ConnectFour = () => {
+    const initialStore = {
+      board: boardZero,
+      boardView: boardZero.map((elem: []) => elem.map((cell: number | string | null ) => cell = null)),
+    };
+    
   const [board, setBoard] = useState(initialStore.board);
   const [boardView, setBoardView] = useState(initialStore.boardView);
   const isPlayerWin = game.gameInfo.strategy.checkWin(game.field.board);
@@ -26,7 +21,7 @@ const ConnectFour = () => {
   const nextPlayer = `Next Player:  ${game.players[game.currentPlayerIndex].name} : ${game.players[game.currentPlayerIndex].sign}`;
   const gameResult = isPlayerWin ? winner : 'Anyone wins';
 
-  const handleClick = (coords) => {
+  const handleClick = (coords: ICoords) => {
     if (!game.isFinished){
         const {x, y} = coords;
         const symbol = game.players[game.currentPlayerIndex].sign;
@@ -51,7 +46,8 @@ const ConnectFour = () => {
   return (
     <>
       <h1>React GAME</h1>
-      <ConnectFourField board={boardView} onClick={handleClick}  />
+      {isConnectFour&&(<ConnectFourField board={boardView} onClick={handleClick}/>)}
+      {isTicTacToe && (<Field board={boardView} onClick={handleClick} />)}
       <div className="info-wrapper">
         <h3>{game.isFinished ? gameResult : nextPlayer}</h3>
       </div> 
@@ -60,4 +56,4 @@ const ConnectFour = () => {
   );
 };
 
-export default ConnectFour;
+export default GameView;
