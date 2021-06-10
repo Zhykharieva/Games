@@ -15,6 +15,7 @@ const GameView: React.FC<GameProps>  = ({game, isConnectFour, isTicTacToe}) => {
     
   const [board, setBoard] = useState(initialStore.board);
   const [boardView, setBoardView] = useState(initialStore.boardView);
+  // const [isCellFilled, setBoardView] = useState(initialStore.boardView);
   const isPlayerWin = game.gameInfo.strategy.checkWin(game.field.board);
   const winner = `Winner:  ${game.players[game.currentPlayerIndex].name}`;
   const nextPlayer = `Next Player:  ${game.players[game.currentPlayerIndex].name} : ${game.players[game.currentPlayerIndex].sign}`;
@@ -22,11 +23,18 @@ const GameView: React.FC<GameProps>  = ({game, isConnectFour, isTicTacToe}) => {
 
   const handleClick = (coords: ICoords) => {
     if (!game.isFinished){
+      console.log(game)
         const {x, y} = coords;
         const symbol = game.players[game.currentPlayerIndex].sign;
         game.makeMove(coords);
         const changedBoardView = JSON.parse(JSON.stringify(boardView));
-        changedBoardView[x][y] = symbol; 
+        if( changedBoardView[x][y] === null ){
+          changedBoardView[x][y] = symbol; 
+        }
+        else {
+          alert('This cell is already occupied. Choose another cell')
+        }
+        
         setBoard(game.field.board);
         setBoardView(changedBoardView)
     }
