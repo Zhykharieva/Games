@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import GameView from '../Game';
+import GameView from '../GameView';
 import { gameTicTacToe, gameConnectFour } from '../utils/gameModels'
 
 
